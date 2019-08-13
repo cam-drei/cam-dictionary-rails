@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_083120) do
+ActiveRecord::Schema.define(version: 2019_08_09_070305) do
 
   create_table "extended", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "mainWord"
     t.string "rumi"
     t.string "akharThrah"
     t.string "source"
