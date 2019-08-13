@@ -123,7 +123,7 @@ class ImportPDF
       groups = sentence.split(' [Cam M] ', 2)
       chams = groups[0].split(' ')
       meanings = groups[1].split('≠', 2)
-      french = meanings[1].split('.', 2)
+      french = meanings[1].split(/(\.|\;)/)
   
       {
         rumi: chams[0, cham_word / 2].join(' '),
@@ -143,7 +143,7 @@ class ImportPDF
       groups = sentence.split(' [Cam M]: ', 2)
       chams = groups[0].split(' ')
       meanings = groups[1].split('≠', 2)
-      french = meanings[1].split('.', 2)
+      french = meanings[1].split(/(\.|\;)/)
   
       {
         rumi: chams[0, cham_word / 2].join(' '),
