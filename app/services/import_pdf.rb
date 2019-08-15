@@ -68,8 +68,8 @@ class ImportPDF
     return @paragraphs if @paragraphs
     @paragraphs = []
     full_sentence = []
-    # page = reader.page(1)
-    reader.pages[0..2].each do |page|
+    # page = reader.page(27)
+    reader.pages.each do |page|
       lines = page.text.scan(/^.+/)
       # debugger
       # puts 'lines', lines
@@ -121,14 +121,14 @@ class ImportPDF
     groups = sentence.split(' [Cam M] ', 2)
     chams = groups[0].split(' ')
     meanings = groups[1].split('≠', 2)
-    french = meanings[1].split(/[.;—]/)
+    frenches = meanings[1].split(/[.;—()]/)
 
     {
       rumi: chams[0, cham_word / 2].join(' '),
       akharThrah: chams[(cham_word / 2)..cham_word].join(' '),
       source: 'Cam M',
       vietnamese: meanings[0],
-      french: french[0],
+      french: frenches[0],
       pronunciation: nil,
       # fullDescription: sentence
       fullDescription: nil
@@ -141,14 +141,14 @@ class ImportPDF
     groups = sentence.split(' [Cam M]: ', 2)
     chams = groups[0].split(' ')
     meanings = groups[1].split('≠', 2)
-    french = meanings[1].split(/[.;—]/)
+    frenches = meanings[1].split(/[.;—()]/)
 
     {
       rumi: chams[0, cham_word / 2].join(' '),
       akharThrah: chams[(cham_word / 2)..cham_word].join(' '),
       source: 'Cam M',
       vietnamese: meanings[0],
-      french: french[0],
+      french: frenches[0],
       pronunciation: nil,
       # fullDescription: sentence
       fullDescription: nil
@@ -160,13 +160,14 @@ class ImportPDF
 
     groups = sentence.split(' [Cam M] ', 2)
     chams = groups[0].split(' ')
+    frenches = groups[1].split(/[.;—]/)
 
     {
       rumi: chams[0, cham_word / 2].join(' '),
       akharThrah: chams[(cham_word / 2)..cham_word].join(' '),
       source: 'Cam M',
       vietnamese: nil,
-      french: groups[1],
+      french: frenches[0],
       pronunciation: nil,
       # fullDescription: sentence
       fullDescription: nil
@@ -178,13 +179,14 @@ class ImportPDF
 
     groups = sentence.split(' [Cam M]: ', 2)
     chams = groups[0].split(' ')
+    frenches = groups[1].split(/[.;—]/)
 
     {
       rumi: chams[0, cham_word / 2].join(' '),
       akharThrah: chams[(cham_word / 2)..cham_word].join(' '),
       source: 'Cam M',
       vietnamese: nil,
-      french: groups[1],
+      french: frenches[0],
       pronunciation: nil,
       # fullDescription: sentence
       fullDescription: nil
@@ -197,13 +199,14 @@ class ImportPDF
     groups = sentence.split(' [Cam M]:', 2)
     chams = groups[0].split(' ')
     meanings = groups[1].split('≠', 2)
+    frenches = meanings[1].split(/[.;—()]/)
 
     {
       rumi: chams[0, cham_word / 2].join(' '),
       akharThrah: chams[(cham_word / 2)..cham_word].join(' '),
       source: 'Cam M',
       vietnamese: meanings[0],
-      french: meanings[1],
+      french: frenches[0],
       pronunciation: nil,
       # fullDescription: sentence
       fullDescription: nil
