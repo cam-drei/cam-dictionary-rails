@@ -1,0 +1,2 @@
+class ImportData < ApplicationRecord
+end

@@ -1,0 +1,10 @@
+<h1>Search by key : <%= @key %></h1>
+
+<% if @search.exists? %>
+    <%= render "meaning"  %>
+<% else %>
+    Can't find the meaning of word: <%= @key %>
+<% end %>
+
+
+
