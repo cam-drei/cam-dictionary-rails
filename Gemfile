@@ -10,7 +10,7 @@ gem 'mysql2', '>= 0.4.4'
 
 gem 'pdf-reader'
 
-
+# gem 'foreman', '~> 0.85.0'
 
 # Use mysql2 as the database for Active Record
 # gem 'mysql2', '~> 1.4'
