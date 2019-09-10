@@ -7,12 +7,18 @@ class HomeController < ApplicationController
         # h = Hash.new
 
         @results = []
-        @search.each do |result|
+        @search.each do |word|
             # debugger
-            h = {}
-            h["title"] = result.rumi
-            h["description"] = result.vietnamese
-            @results << h
+            result = {}
+            result["title"] = word.rumi
+            result["description"] = {}
+            result["description"]["akharThrah"] = word.akharThrah
+            result["description"]["source"] = word.source
+            result["description"]["vietnamese"] = word.vietnamese
+            result["description"]["french"] = word.french
+            result["description"]["pronunciation"] = word.pronunciation
+            result["description"]["fullDescription"] = word.fullDescription
+            @results << result
             # debugger
         end
         # debugger
@@ -23,3 +29,14 @@ class HomeController < ApplicationController
         # debugger  
     end
 end
+
+
+# @results = []
+#         @search.each do |result|
+#             # debugger
+#             h = {}
+#             h["title"] = result.rumi
+#             h["description"] = result.vietnamese
+#             @results << h
+#             # debugger
+#         end
