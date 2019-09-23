@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_094424) do
+ActiveRecord::Schema.define(version: 2019_09_19_005936) do
+
+  create_table "example", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "extendedId"
+    t.string "mainWord"
+    t.string "rumi"
+    t.string "akharThrah"
+    t.string "source"
+    t.string "vietnamese"
+    t.string "french"
+    t.string "english"
+    t.string "pronunciation"
+    t.text "fullDescription"
+  end
 
   create_table "extended", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "importDataId"
     t.string "mainWord"
+    t.string "wordClasses"
     t.string "rumi"
     t.string "akharThrah"
     t.string "source"

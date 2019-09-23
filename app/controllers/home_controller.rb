@@ -2,7 +2,7 @@ class HomeController < ApplicationController
     def search
         @key = params[:search]
         # debugger 
-        @search = ImportData.where('rumi LIKE ?', "#{@key}%").includes(:extendeds)
+        @search = ImportData.where('rumi LIKE ?', "#{@key}%").includes(:extendeds, :examples)
         # @search = ImportData.where('rumi LIKE ?', "#{@key}%").limit(50)
 
         @results = []
@@ -18,20 +18,52 @@ class HomeController < ApplicationController
             result["description"]["english"] = word.english
             result["description"]["pronunciation"] = word.pronunciation
             # result["description"]["fullDescription"] = word.fullDescription
-            fullList = []
-            word.extendeds.each do |ex|
-                list ={}
-                list["list"] = ex.rumi.to_s + " " + ex.akharThrah.to_s + " " + ex.vietnamese.to_s + " _ " + ex.french.to_s + " " + ex.english.to_s + " " + ex.pronunciation.to_s + " " + ex.fullDescription.to_s + " " + ex.source.to_s
-                fullList << list
+            fullMeaning = []
+            word.extendeds.each do |exten|
+                meaning ={}
+                # meaning["meaning"] = exten.wordClasses.to_s + " " + exten.rumi.to_s + " " + exten.akharThrah.to_s + " " + exten.source.to_s + " " + exten.vietnamese.to_s + " = " + exten.french.to_s + " _ " + exten.english.to_s + " " + exten.pronunciation.to_s + " " + exten.fullDescription.to_s
+                meaning["meaning"] = {}
+                meaning["meaning"]["wordClasses"] = exten.wordClasses
+                meaning["meaning"]["rumi"] = exten.rumi
+                meaning["meaning"]["akharThrah"] = exten.akharThrah
+                meaning["meaning"]["source"] = exten.source
+                meaning["meaning"]["vietnamese"] = exten.vietnamese
+                meaning["meaning"]["french"] = exten.french
+                meaning["meaning"]["english"] = exten.english
+                meaning["meaning"]["pronunciation"] = exten.pronunciation
+                meaning["meaning"]["fullDescription"] = exten.fullDescription
+                
+
+                meaning["list"] = []
+                exten.examples.each do |exam|
+                    # example = exam.rumi.to_s + " " + exam.akharThrah.to_s + " " + exam.source.to_s + " " + exam.vietnamese.to_s + " = " + exam.french.to_s + " _ " + exam.english.to_s + " " + exam.pronunciation.to_s + " " + exam.fullDescription.to_s
+                    example = {}
+                    example["rumi"] = exam.rumi
+                    example["akharThrah"] = exam.akharThrah
+                    example["source"] = exam.source
+                    example["vietnamese"] = exam.vietnamese
+                    example["french"] = exam.french
+                    example["english"] = exam.english
+                    example["pronunciation"] = exam.pronunciation
+                    example["fullDescription"] = exam.fullDescription
+                    
+                    # debugger
+                    meaning["list"] << example
+                end
+
+                fullMeaning << meaning
+                # debugger
             end
+
+
             # debugger
             # result["description"]["fullDescription"] = []
-            # fullList.each do |li|
+            # fullMeaning.each do |li|
             #     # debugger
-            #     result["description"]["fullDescription"] << li["list"]
+            #     result["description"]["fullDescription"] << li["meaning"]
             # end
             
-            result["description"]["fullDescription"] = fullList.to_json
+            result["description"]["fullDescription"] = fullMeaning.to_json
             @results << result
             # debugger
             # end
@@ -39,7 +71,6 @@ class HomeController < ApplicationController
         # debugger
 
         render json: {result: @results.to_json}
-
     end
 end
 
