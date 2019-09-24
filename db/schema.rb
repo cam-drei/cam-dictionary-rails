@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_005936) do
+ActiveRecord::Schema.define(version: 2019_09_23_095437) do
 
   create_table "example", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "extendedId"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_005936) do
   end
 
   create_table "extended", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "importDataId"
+    t.bigint "wordId"
     t.string "mainWord"
     t.string "wordClasses"
     t.string "rumi"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_005936) do
     t.text "fullDescription"
   end
 
-  create_table "import_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "word", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "rumi"
     t.string "akharThrah"
     t.string "source"
