@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
     def search
         @key = params[:search]
-        @search = Word.where('rumi LIKE ?', "#{@key}%").includes(:extendeds, :examples)
-        # @search = Word.where('rumi LIKE ?', "#{@key}%").limit(50)
+        @search = Word.where('rumi LIKE ?', "#{@key}%").order(:rumi).includes(:extendeds, :examples)
 
         @results = []
         @search.each do |word|
