@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
     def search
-        @key = params[:search]
-        @search = Word.where('rumi LIKE ?', "#{@key}%").order(:rumi).includes(:extendeds, :examples)
+        key = params[:search]
+        search = Word.where('rumi LIKE ?', "#{key}%").order(:rumi).includes(:extendeds, :examples)
 
-        @results = []
-        @search.each do |word|
+        results = []
+        search.each do |word|
             result = {}
             result["title"] = word.rumi
             result["description"] = {}
@@ -41,10 +41,10 @@ class HomeController < ApplicationController
 
             
             result["description"]["fullDescription"] = fullMeaning.to_json
-            @results << result
+            results << result
         end
 
-        render json: {result: @results.to_json}
+        render json: {result: results.to_json}
     end
 end
 
