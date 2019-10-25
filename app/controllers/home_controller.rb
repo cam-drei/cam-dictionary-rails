@@ -15,6 +15,8 @@ class HomeController < ApplicationController
     render json: { result: results.to_json }
   end
 
+  private
+
   def build_example(extended)
     example = []
     extended.map do |exten|
